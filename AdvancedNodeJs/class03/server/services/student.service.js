@@ -6,6 +6,12 @@ export default class StudentService {
 
     return students;
   }
+  static async getStudentByID(studentID) {
+    const student = await Student.findById(studentID);
+    if (!student)
+      throw new Error(`Student with id ${studentID} doesn't exist!!`);
+    return student;
+  }
   static async addNewStudent(studentInfo) {
     const newStudentInfo = new Student(studentInfo);
 

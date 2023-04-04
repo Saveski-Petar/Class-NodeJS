@@ -3,8 +3,14 @@ import StudentService from "../services/student.service.js";
 export default class StudentController {
   static async getAllStudents(req, res) {
     try {
-      const students = await StudentService.getAllStudents();
-      res.status(200).send(students);
+      const id = req.params.id;
+      if (id) {
+        const student = await StudentService.getStudentByID(id);
+        res.status(200).send(student);
+      } else {
+        const students = await StudentService.getAllStudents();
+        res.status(200).send(students);
+      }
     } catch (error) {
       console.log("Error while getting all students ");
       res.status(500).send(error.message);
