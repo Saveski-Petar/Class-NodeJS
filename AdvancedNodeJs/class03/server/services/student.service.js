@@ -7,9 +7,20 @@ export default class StudentService {
     return students;
   }
   static async getStudentByID(studentID) {
-    const student = await Student.findById(studentID);
+    const student = await Student.findById(studentID).populate(
+      "course",
+      "-students"
+    );
     if (!student)
       throw new Error(`Student with id ${studentID} doesn't exist!!`);
+
+    // const course = await Course.findById(student.courseID).lean();
+
+    // const fullStudent = {
+    //   ...student,
+    //   course,
+    // };
+
     return student;
   }
   static async addNewStudent(studentInfo) {

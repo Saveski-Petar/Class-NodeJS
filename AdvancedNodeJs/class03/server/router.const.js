@@ -4,9 +4,9 @@ import coursesRoutes from "./routes/courses.routes.js";
 const router = Router();
 
 // courses routes
+router.use("/courses", coursesRoutes);
 
 // student routes
 router.use("/students", studentRoutes);
-router.use("/courses", coursesRoutes);
 
 export default router;

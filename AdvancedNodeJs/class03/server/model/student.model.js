@@ -27,6 +27,10 @@ const studentSchema = new Schema({
     required: true,
     unique: true,
   },
+  course: {
+    type: Schema.Types.ObjectId,
+    ref: "Course",
+  },
 });
 
 const Student = model("Student", studentSchema);

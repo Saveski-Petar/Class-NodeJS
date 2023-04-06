@@ -1,5 +1,21 @@
 import { Schema, model } from "mongoose";
 
+const courseStructureSchema = new Schema({
+  _id: false,
+  languages: {
+    type: [String],
+    required: true,
+  },
+  frameworks: {
+    type: [String],
+    required: true,
+  },
+  tools: {
+    type: [String],
+    required: true,
+  },
+});
+
 const courseSchema = new Schema({
   title: {
     type: String,
@@ -17,6 +33,16 @@ const courseSchema = new Schema({
   },
   assistant: {
     type: String,
+    required: true,
+  },
+  students: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Student",
+    },
+  ],
+  courseStructure: {
+    type: courseStructureSchema,
     required: true,
   },
 });
